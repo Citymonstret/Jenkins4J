@@ -25,18 +25,23 @@
 package org.incendo.jenkins;
 
 import com.google.common.base.Preconditions;
+import okhttp3.ResponseBody;
+import org.incendo.jenkins.exception.JenkinsBuildNotFoundException;
+import org.incendo.jenkins.exception.JenkinsJobNotFoundException;
 import org.incendo.jenkins.exception.JenkinsNodeReadException;
+import org.incendo.jenkins.objects.BuildInfo;
 import org.incendo.jenkins.objects.JobInfo;
-import org.incendo.jenkins.views.MasterView;
+import org.incendo.jenkins.objects.MasterNode;
+import org.jetbrains.annotations.NotNull;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
-import javax.annotation.Nonnull;
 import java.util.Locale;
 
 /**
  * Reader that reads data from a {@link JenkinsService} and then
  * parses it into Jenkins objects
- *
+ * <p>
  * This class should not be directly interacted with, instead use {@link Jenkins}
  */
 public abstract class JenkinsReader {
@@ -44,42 +49,137 @@ public abstract class JenkinsReader {
     private final JenkinsAPIType jenkinsAPIType;
     private final JenkinsService jenkinsService;
 
-    protected JenkinsReader(@Nonnull final JenkinsPathProvider jenkinsPathProvider,
-        @Nonnull final JenkinsAPIType jenkinsAPIType) {
-        Preconditions.checkNotNull(jenkinsPathProvider, "Path provider must not be null");
-        Preconditions.checkNotNull(jenkinsAPIType, "API type must not be null");
+    /**
+     * Instantiates a new Jenkins reader.
+     *
+     * @param jenkinsPathProvider the jenkins path provider
+     * @param jenkinsAPIType      the jenkins api type
+     */
+    protected JenkinsReader(@NotNull final JenkinsPathProvider jenkinsPathProvider,
+        @NotNull final JenkinsAPIType jenkinsAPIType) {
+        Preconditions.checkNotNull(jenkinsPathProvider, "Path provider may not be null");
+        Preconditions.checkNotNull(jenkinsAPIType, "API type may not be null");
         this.jenkinsAPIType = jenkinsAPIType;
-        final Retrofit retrofit = new Retrofit.Builder().baseUrl(jenkinsPathProvider.getBasePath())
-            .build();
+        final Retrofit retrofit =
+            new Retrofit.Builder().baseUrl(jenkinsPathProvider.getBasePath()).build();
         this.jenkinsService = retrofit.create(JenkinsService.class);
     }
 
-    final MasterView readMasterView() throws JenkinsNodeReadException {
+    /**
+     * Read master view master node.
+     *
+     * @return the master node
+     * @throws JenkinsNodeReadException the jenkins node read exception
+     */
+    final MasterNode readMasterView() throws JenkinsNodeReadException {
         final String content;
         try {
-            content = this.jenkinsService.getMasterNode(this.getAPITypeString()).execute().body().string();
+            final ResponseBody body =
+                this.jenkinsService.getMasterNode(this.getAPITypeString()).execute().body();
+            if (body == null) {
+                throw new NullPointerException("Response body is null");
+            }
+            content = body.string();
         } catch (final Exception exception) {
             throw new JenkinsNodeReadException("master node", exception);
         }
         return this.readMasterView(content);
     }
 
-    final JobInfo readJobInfo(@Nonnull final String jobName) throws JenkinsNodeReadException {
+    /**
+     * Read job info job info.
+     *
+     * @param jobName the job name
+     * @return the job info
+     * @throws JenkinsNodeReadException the jenkins node read exception
+     */
+    final JobInfo readJobInfo(@NotNull final String jobName) throws JenkinsNodeReadException {
         final String content;
         try {
-            content = this.jenkinsService.getJobInfo(jobName, this.getAPITypeString()).execute().body().string();
+            final Response<ResponseBody> response =
+                this.jenkinsService.getJobInfo(jobName, this.getAPITypeString()).execute();
+            if (response == null) {
+                throw new NullPointerException("Response is null");
+            }
+            if (response.code() == 404) {
+                throw new JenkinsJobNotFoundException(jobName);
+            }
+            final ResponseBody body = response.body();
+            if (body == null) {
+                throw new NullPointerException("Response body is null");
+            }
+            content = body.string();
         } catch (final Exception exception) {
             throw new JenkinsNodeReadException(String.format("job node: %s", jobName), exception);
         }
         return this.readJobInfo(jobName, content);
     }
 
-    protected abstract MasterView readMasterView(@Nonnull String rawContent) throws JenkinsNodeReadException;
+    /**
+     * Read build info build info.
+     *
+     * @param jobName the job name
+     * @param build   the build
+     * @return the build info
+     * @throws JenkinsNodeReadException the jenkins node read exception
+     */
+    final BuildInfo readBuildInfo(@NotNull final String jobName, final int build)
+        throws JenkinsNodeReadException {
+        final String content;
+        try {
+            final Response<ResponseBody> response =
+                this.jenkinsService.getBuildInfo(jobName, build, this.getAPITypeString()).execute();
+            if (response == null) {
+                throw new NullPointerException("Response is null");
+            }
+            if (response.code() == 404) {
+                throw new JenkinsBuildNotFoundException(jobName, build);
+            }
+            final ResponseBody body = response.body();
+            if (body == null) {
+                throw new NullPointerException("Response body is null");
+            }
+            content = body.string();
+        } catch (final Exception exception) {
+            throw new JenkinsNodeReadException(String.format("job node: %s", jobName), exception);
+        }
+        return this.readBuildInfo(jobName, build, content);
+    }
 
-    protected abstract JobInfo readJobInfo(@Nonnull final String jobName, @Nonnull final String rawContent)
+    /**
+     * Read master view master node.
+     *
+     * @param rawContent the raw content
+     * @return the master node
+     * @throws JenkinsNodeReadException the jenkins node read exception
+     */
+    protected abstract MasterNode readMasterView(@NotNull String rawContent)
         throws JenkinsNodeReadException;
 
-    private String getAPITypeString() {
+    /**
+     * Read job info job info.
+     *
+     * @param jobName    the job name
+     * @param rawContent the raw content
+     * @return the job info
+     * @throws JenkinsNodeReadException the jenkins node read exception
+     */
+    protected abstract JobInfo readJobInfo(@NotNull final String jobName,
+        @NotNull final String rawContent) throws JenkinsNodeReadException;
+
+    /**
+     * Read build info build info.
+     *
+     * @param jobName    the job name
+     * @param build      the build
+     * @param rawContent the raw content
+     * @return the build info
+     * @throws JenkinsNodeReadException the jenkins node read exception
+     */
+    protected abstract BuildInfo readBuildInfo(@NotNull final String jobName, final int build,
+        @NotNull final String rawContent) throws JenkinsNodeReadException;
+
+    @NotNull private String getAPITypeString() {
         return this.jenkinsAPIType.name().toLowerCase(Locale.ENGLISH);
     }
 

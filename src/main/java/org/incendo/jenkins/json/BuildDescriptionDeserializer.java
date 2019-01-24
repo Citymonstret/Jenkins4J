@@ -26,6 +26,7 @@ package org.incendo.jenkins.json;
 
 import com.google.gson.*;
 import org.incendo.jenkins.objects.BuildDescription;
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Type;
 
@@ -34,7 +35,8 @@ import java.lang.reflect.Type;
  */
 final class BuildDescriptionDeserializer implements JsonDeserializer<BuildDescription> {
 
-    @Override public BuildDescription deserialize(final JsonElement json, final Type typeOfT,
+    @NotNull @Override
+    public BuildDescription deserialize(@NotNull final JsonElement json, final Type typeOfT,
         final JsonDeserializationContext context) throws JsonParseException {
         final JsonObject jsonObject = json.getAsJsonObject();
         final String jenkinsClass = jsonObject.get("_class").getAsString();

@@ -25,17 +25,35 @@
 package org.incendo.jenkins.objects;
 
 import com.google.common.base.Preconditions;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
+import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
 
-public final class BuildDescription {
+/**
+ * Build description, which a reference to a Jenkins job build
+ * <p>
+ * This is a direct child to {@link JobInfo}
+ */
+@SuppressWarnings("unused") public final class BuildDescription
+    implements NodeChild<JobInfo>, NodePath {
 
     private final String jenkinsClass;
     private final int number;
     private final String url;
 
-    public BuildDescription(@Nonnull final String jenkinsClass, final int number,
-        @Nonnull final String url) {
+    private JobInfo parent;
+
+    /**
+     * Instantiates a new Build description.
+     *
+     * @param jenkinsClass the jenkins class
+     * @param number       the number
+     * @param url          the url
+     */
+    public BuildDescription(@NotNull final String jenkinsClass, final int number,
+        @NotNull final String url) {
         Preconditions.checkNotNull(jenkinsClass, "Jenkins class may not be null");
         Preconditions.checkNotNull(url, "Url may not be null");
         this.jenkinsClass = jenkinsClass;
@@ -43,21 +61,73 @@ public final class BuildDescription {
         this.url = url;
     }
 
-    public String getJenkinsClass() {
+    /**
+     * Gets jenkins class.
+     *
+     * @return the jenkins class
+     */
+    @Contract(pure = true) public String getJenkinsClass() {
         return this.jenkinsClass;
     }
 
-    public int getNumber() {
+    /**
+     * Get the build number
+     *
+     * @return Build number
+     */
+    @Contract(pure = true) public int getNumber() {
         return this.number;
     }
 
-    public String getUrl() {
+    /**
+     * Get an URL linking to the build that this description is representing
+     *
+     * @return build url
+     */
+    @Override @Contract(pure = true) public String getUrl() {
         return this.url;
     }
 
-    @Override public String toString() {
+    @Contract(value = "null -> false", pure = true) @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final BuildDescription that = (BuildDescription) o;
+        return number == that.number && jenkinsClass.equals(that.jenkinsClass) && url
+            .equals(that.url);
+    }
+
+    @Override public int hashCode() {
+        return Objects.hash(jenkinsClass, number, url);
+    }
+
+    @NotNull @Contract(pure = true) @Override public String toString() {
         return "BuildDescription{" + "jenkinsClass='" + jenkinsClass + '\'' + ", number=" + number
             + ", url='" + url + '\'' + '}';
+    }
+
+    @NotNull @Contract(pure = true) @Override public CompletableFuture<JobInfo> getParent() {
+        return CompletableFuture.completedFuture(this.parent);
+    }
+
+    @Override public void setParent(@NotNull final JobInfo parent) {
+        if (this.parent != null) {
+            throw new IllegalStateException("Cannot re-set node parent");
+        }
+        this.parent = parent;
+    }
+
+    /**
+     * Get the {@link BuildInfo} represented by this description
+     *
+     * @return build info
+     */
+    public CompletableFuture<BuildInfo> getBuildInfo() {
+        return this.parent.getBuildInfo(this.number);
     }
 
 }

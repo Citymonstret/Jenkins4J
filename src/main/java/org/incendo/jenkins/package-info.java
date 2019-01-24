@@ -22,17 +22,10 @@
 // SOFTWARE.
 //
 
-package org.incendo.jenkins;
-
 /**
- * The enum Jenkins api type.
+ * Base package for Jenkins4J. The most important class when dealing with Jenkins4J is
+ * {@link org.incendo.jenkins.Jenkins}, which resides in this package. To get a new Jenkins4J
+ * instance, use {@link org.incendo.jenkins.Jenkins#newBuilder()} and then
+ * {@link org.incendo.jenkins.JenkinsBuilder#build()}
  */
-public enum JenkinsAPIType {/**
- * Json jenkins api type.
- */
-JSON,
-    /**
-     * Xml jenkins api type.
-     */
-    @SuppressWarnings("unused") XML
-}
+package org.incendo.jenkins;

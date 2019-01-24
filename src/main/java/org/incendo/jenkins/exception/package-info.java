@@ -22,17 +22,7 @@
 // SOFTWARE.
 //
 
-package org.incendo.jenkins;
-
 /**
- * The enum Jenkins api type.
+ * Jenkins4J exceptions
  */
-public enum JenkinsAPIType {/**
- * Json jenkins api type.
- */
-JSON,
-    /**
-     * Xml jenkins api type.
-     */
-    @SuppressWarnings("unused") XML
-}
+package org.incendo.jenkins.exception;

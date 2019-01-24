@@ -22,17 +22,20 @@
 // SOFTWARE.
 //
 
-package org.incendo.jenkins;
+package org.incendo.jenkins.objects;
+
+import org.incendo.jenkins.Jenkins;
 
 /**
- * The enum Jenkins api type.
+ * The interface Node.
  */
-public enum JenkinsAPIType {/**
- * Json jenkins api type.
- */
-JSON,
+public interface Node {
+
     /**
-     * Xml jenkins api type.
+     * Gets jenkins.
+     *
+     * @return the jenkins
      */
-    @SuppressWarnings("unused") XML
+    Jenkins getJenkins();
+
 }

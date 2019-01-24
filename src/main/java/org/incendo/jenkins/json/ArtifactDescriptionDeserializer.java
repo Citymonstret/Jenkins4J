@@ -25,25 +25,45 @@
 package org.incendo.jenkins.json;
 
 import com.google.gson.*;
-import org.incendo.jenkins.objects.JobDescription;
+import org.incendo.jenkins.objects.ArtifactDescription;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Type;
 
 /**
- * Json deserializer for {@link JobDescription}
+ * Json deserializer for {@link ArtifactDescription}
  */
-final class JobDescriptionDeserializer implements JsonDeserializer<JobDescription> {
+final class ArtifactDescriptionDeserializer implements JsonDeserializer<ArtifactDescription> {
 
-    @NotNull @Override
-    public JobDescription deserialize(@NotNull final JsonElement json, final Type typeOfT,
+    @NotNull @Contract(pure = true) @Override
+    public ArtifactDescription deserialize(final JsonElement json, final Type typeOfT,
         final JsonDeserializationContext context) throws JsonParseException {
         final JsonObject jsonObject = json.getAsJsonObject();
-        final String className = jsonObject.get("_class").getAsString();
-        final String name = jsonObject.get("name").getAsString();
-        final String url = jsonObject.get("url").getAsString();
-        final String color = jsonObject.get("color").getAsString();
-        return new JobDescription(className, name, url, color);
+        final String displayPath;
+        if (jsonObject.has("displayPath")) {
+            final JsonElement displayPathElement = jsonObject.get("displayPath");
+            if (displayPathElement.isJsonNull()) {
+                displayPath = "null";
+            } else {
+                displayPath = jsonObject.get("displayPath").getAsString();
+            }
+        } else {
+            displayPath = "";
+        }
+        final String fileName;
+        if (jsonObject.has("fileName")) {
+            fileName = jsonObject.get("fileName").getAsString();
+        } else {
+            fileName = "";
+        }
+        final String relativePath;
+        if (jsonObject.has("relativePath")) {
+            relativePath = jsonObject.get("relativePath").getAsString();
+        } else {
+            relativePath = "";
+        }
+        return new ArtifactDescription(displayPath, fileName, relativePath);
     }
 
 }

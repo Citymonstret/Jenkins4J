@@ -22,17 +22,31 @@
 // SOFTWARE.
 //
 
-package org.incendo.jenkins;
+package org.incendo.jenkins.objects;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
- * The enum Jenkins api type.
+ * Represents something that is a child of a {@link Node}
+ *
+ * @param <P> Parent type
  */
-public enum JenkinsAPIType {/**
- * Json jenkins api type.
- */
-JSON,
+public interface NodeChild<P extends Node> {
+
     /**
-     * Xml jenkins api type.
+     * Get the parent {@link Node}
+     *
+     * @return the parent
      */
-    @SuppressWarnings("unused") XML
+    CompletableFuture<P> getParent();
+
+    /**
+     * Set the parent {@link Node} of this {@link NodeChild}
+     *
+     * @param parent new parent
+     */
+    void setParent(@NotNull P parent);
+
 }

@@ -24,48 +24,78 @@
 
 package org.incendo.jenkins.json;
 
+import com.google.common.base.Preconditions;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.incendo.jenkins.Jenkins;
 import org.incendo.jenkins.JenkinsAPIType;
 import org.incendo.jenkins.JenkinsPathProvider;
 import org.incendo.jenkins.JenkinsReader;
 import org.incendo.jenkins.exception.JenkinsNodeReadException;
-import org.incendo.jenkins.objects.BuildDescription;
-import org.incendo.jenkins.objects.JobDescription;
-import org.incendo.jenkins.objects.JobInfo;
-import org.incendo.jenkins.views.MasterView;
+import org.incendo.jenkins.objects.*;
 import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 
 /**
  * {@link JenkinsReader} using Google Gson
  */
 public final class JsonJenkinsReader extends JenkinsReader {
 
+    private final Jenkins jenkins;
     private final Gson gson;
 
-    public JsonJenkinsReader(@Nonnull JenkinsPathProvider jenkinsPathProvider) {
+    /**
+     * Instantiates a new Json jenkins reader.
+     *
+     * @param jenkins             the jenkins
+     * @param jenkinsPathProvider the jenkins path provider
+     */
+    public JsonJenkinsReader(@NotNull final Jenkins jenkins,
+        @NotNull JenkinsPathProvider jenkinsPathProvider) {
         super(jenkinsPathProvider, JenkinsAPIType.JSON);
-        this.gson = new GsonBuilder().registerTypeAdapter(JobDescription.class,
-            new JobDescriptionDeserializer()).registerTypeAdapter(MasterView.class,
-            new MasterDeserializer(this)).registerTypeAdapter(BuildDescription.class,
-            new BuildDescriptionDeserializer()).registerTypeAdapter(JobInfo.class,
-            new JobInfoDeserializer(this)).create();
+        this.jenkins = Preconditions.checkNotNull(jenkins, "Jenkins may not be null");
+        this.gson = new GsonBuilder()
+            .registerTypeAdapter(JobDescription.class, new JobDescriptionDeserializer())
+            .registerTypeAdapter(MasterNode.class, new MasterNodeDeserializer(this))
+            .registerTypeAdapter(BuildDescription.class, new BuildDescriptionDeserializer())
+            .registerTypeAdapter(JobInfo.class, new JobInfoDeserializer(this))
+            .registerTypeAdapter(ArtifactDescription.class, new ArtifactDescriptionDeserializer())
+            .registerTypeAdapter(BuildInfo.class, new BuildInfoDeserializer(this)).create();
     }
 
-    @Override protected MasterView readMasterView(@Nonnull final String rawContent)
+    @Override protected MasterNode readMasterView(@NotNull final String rawContent)
         throws JenkinsNodeReadException {
-        return gson.fromJson(rawContent, MasterView.class);
+        return gson.fromJson(rawContent, MasterNode.class);
     }
 
-    @Override protected JobInfo readJobInfo(@Nonnull final String jobName, final @Nonnull String rawContent)
+    @Override
+    protected JobInfo readJobInfo(@NotNull final String jobName, final @NotNull String rawContent)
         throws JenkinsNodeReadException {
         return gson.fromJson(rawContent, JobInfo.class);
     }
 
+    @Override protected BuildInfo readBuildInfo(@NotNull final String jobName, final int build,
+        @NotNull String rawContent) throws JenkinsNodeReadException {
+        return gson.fromJson(rawContent, BuildInfo.class);
+    }
+
+    /**
+     * Gets gson.
+     *
+     * @return the gson
+     */
     @Contract(pure = true) Gson getGson() {
         return this.gson;
+    }
+
+    /**
+     * Gets jenkins.
+     *
+     * @return the jenkins
+     */
+    @Contract(pure = true) Jenkins getJenkins() {
+        return this.jenkins;
     }
 
 }

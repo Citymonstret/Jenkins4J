@@ -22,22 +22,22 @@
 // SOFTWARE.
 //
 
-package org.incendo.jenkins;
+package org.incendo.jenkins.exception;
 
-import java.util.concurrent.ExecutionException;
+import org.jetbrains.annotations.NotNull;
 
-public class TesterClazzy {
+/**
+ * The type Jenkins job not found exception.
+ */
+public final class JenkinsJobNotFoundException extends JenkinsNodeReadException {
 
-    public static void main(String[] args) {
-        final Jenkins jenkins = Jenkins.newBuilder().withPath("https://ci.athion.net/").build();
-        try {
-            jenkins.getJobDescriptions().get().forEach(jobDescription ->
-                System.out.printf("Found job with name %s!\n", jobDescription.getName()));
-            System.out.println("Looking up PlotSquared-Breaking info :D");
-            System.out.println(jenkins.getJobInfo("PlotSquared-Breaking").get().toString());
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
+    /**
+     * Instantiates a new Jenkins job not found exception.
+     *
+     * @param job the job
+     */
+    public JenkinsJobNotFoundException(@NotNull final String job) {
+        super(String.format("Could not find a job with the name %s", job), new RuntimeException());
     }
 
 }

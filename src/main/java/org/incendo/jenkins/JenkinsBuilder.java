@@ -25,18 +25,20 @@
 package org.incendo.jenkins;
 
 import com.google.common.base.Preconditions;
-import org.incendo.jenkins.json.JsonJenkinsReader;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 
 /**
  * Builder class for {@link Jenkins} instances
  */
-@SuppressWarnings({"WeakerAccess"}) public class JenkinsBuilder {
+@SuppressWarnings("unused") public class JenkinsBuilder {
 
     private String jenkinsPath;
     private JenkinsAPIType jenkinsAPIType = JenkinsAPIType.JSON;
 
+    /**
+     * Instantiates a new Jenkins builder.
+     */
     JenkinsBuilder() {
     }
 
@@ -46,9 +48,9 @@ import javax.annotation.Nonnull;
      * @param jenkinsPath non-null, non-empty url (with optional trailing slash)
      * @return this {@link JenkinsBuilder} instance
      */
-    public JenkinsBuilder withPath(@Nonnull final String jenkinsPath) {
-        Preconditions.checkNotNull(jenkinsPath, "Jenkins path must not be null");
-        Preconditions.checkState(!jenkinsPath.isEmpty(), "Jenkins must not be empty");
+    public JenkinsBuilder withPath(@NotNull final String jenkinsPath) {
+        Preconditions.checkNotNull(jenkinsPath, "Jenkins path may not be null");
+        Preconditions.checkState(!jenkinsPath.isEmpty(), "Jenkins may not be empty");
         if (jenkinsPath.endsWith("/")) {
             this.jenkinsPath = jenkinsPath;
         } else {
@@ -65,14 +67,7 @@ import javax.annotation.Nonnull;
     public Jenkins build() {
         Preconditions.checkNotNull(jenkinsPath, "Path must be specified");
         final JenkinsPathProvider jenkinsPathProvider = new JenkinsPathProvider(this.jenkinsPath);
-        final JenkinsReader jenkinsReader;
-        if (jenkinsAPIType == JenkinsAPIType.JSON) {
-            jenkinsReader = new JsonJenkinsReader(jenkinsPathProvider);
-        } else {
-            throw new IllegalArgumentException(
-                String.format("Unimplemented API type: %s", jenkinsAPIType));
-        }
-        return new Jenkins(jenkinsPathProvider, jenkinsReader);
+        return new Jenkins(jenkinsPathProvider, this.jenkinsAPIType);
     }
 
 }

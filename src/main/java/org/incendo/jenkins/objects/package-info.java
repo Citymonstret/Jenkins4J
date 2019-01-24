@@ -22,17 +22,22 @@
 // SOFTWARE.
 //
 
-package org.incendo.jenkins;
-
 /**
- * The enum Jenkins api type.
+ * Java representations of Jenkins elements
+ * <p>
+ * There are two types of objects that you will encounter when working with Jenkins4J:
+ * <ul>
+ * <li>description classes</li>
+ * <li>information classes</li>
+ * </ul>
+ * <p>
+ * A description is a simple member of an info class, and it will often just contain a name or a number.
+ * You can use a description to get a ({@link java.util.concurrent.CompletableFuture} of) an
+ * information class. Information classes contain references to child nodes, and a bunch of meta
+ * data. This is to mirror how the Jenkins API works.
+ * <p>
+ * You can use description classes to retrieve their corresponding information classes, by using
+ * {@link org.incendo.jenkins.objects.NodeChild#getParent()}.
+ * All information classes can also be retrieved using the Jenkins instance.
  */
-public enum JenkinsAPIType {/**
- * Json jenkins api type.
- */
-JSON,
-    /**
-     * Xml jenkins api type.
-     */
-    @SuppressWarnings("unused") XML
-}
+package org.incendo.jenkins.objects;

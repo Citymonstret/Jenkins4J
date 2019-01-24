@@ -25,19 +25,35 @@
 package org.incendo.jenkins;
 
 import com.google.common.base.Preconditions;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
-
+/**
+ * Simple holder class for Jenkins path(s)
+ */
 public class JenkinsPathProvider {
 
     private final String basePath;
 
-    JenkinsPathProvider(@Nonnull final String basePath) {
-        Preconditions.checkNotNull(basePath, "Base path must not be null");
-        this.basePath = basePath;
+    /**
+     * Instantiates a new Jenkins path provider.
+     *
+     * @param basePath the base path
+     */
+    JenkinsPathProvider(@NotNull final String basePath) {
+        Preconditions.checkNotNull(basePath, "Base path may not be null");
+        if (!basePath.endsWith("/")) {
+            this.basePath = String.format("%s/", basePath);
+        } else {
+            this.basePath = basePath;
+        }
     }
 
-    String getBasePath() {
+    /**
+     * Get the jenkins base path that was specified in the {@link JenkinsBuilder builder}
+     *
+     * @return base path
+     */
+    public String getBasePath() {
         return this.basePath;
     }
 

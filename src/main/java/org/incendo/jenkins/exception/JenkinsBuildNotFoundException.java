@@ -22,26 +22,24 @@
 // SOFTWARE.
 //
 
-package org.incendo.jenkins.views;
+package org.incendo.jenkins.exception;
 
-import com.google.common.base.Preconditions;
-import org.incendo.jenkins.objects.JobDescription;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
-import java.util.Collection;
-import java.util.Collections;
+/**
+ * The type Jenkins build not found exception.
+ */
+public final class JenkinsBuildNotFoundException extends JenkinsNodeReadException {
 
-public class MasterView {
-
-    private final Collection<JobDescription> jobDescriptions;
-
-    public MasterView(@Nonnull final Collection<JobDescription> jobDescriptions) {
-        Preconditions.checkNotNull(jobDescriptions, "Job descriptions must not be null");
-        this.jobDescriptions = jobDescriptions;
-    }
-
-    public Collection<JobDescription> getJobDescriptions() {
-        return Collections.unmodifiableCollection(this.jobDescriptions);
+    /**
+     * Instantiates a new Jenkins build not found exception.
+     *
+     * @param jobName the job name
+     * @param build   the build
+     */
+    public JenkinsBuildNotFoundException(@NotNull final String jobName, final int build) {
+        super(String.format("Could not find build %d in job %s", build, jobName),
+            new RuntimeException());
     }
 
 }

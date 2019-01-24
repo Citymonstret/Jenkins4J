@@ -22,17 +22,18 @@
 // SOFTWARE.
 //
 
-package org.incendo.jenkins;
+package org.incendo.jenkins.objects;
 
 /**
- * The enum Jenkins api type.
+ * A path to the represented object on Jenkins
  */
-public enum JenkinsAPIType {/**
- * Json jenkins api type.
- */
-JSON,
+public interface NodePath {
+
     /**
-     * Xml jenkins api type.
+     * Gets url.
+     *
+     * @return the url
      */
-    @SuppressWarnings("unused") XML
+    String getUrl();
+
 }

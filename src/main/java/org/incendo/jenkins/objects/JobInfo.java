@@ -25,13 +25,21 @@
 package org.incendo.jenkins.objects;
 
 import com.google.common.base.Preconditions;
+import org.incendo.jenkins.Jenkins;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Collection;
+import java.util.concurrent.CompletableFuture;
 
-public final class JobInfo {
+/**
+ * The type Job info.
+ */
+@SuppressWarnings({"unused", "WeakerAccess"}) public final class JobInfo
+    implements Node, NodeChild<MasterNode>, NodePath {
 
+    private final Jenkins jenkins;
     private final String name;
     private final String fullName;
     private final String displayName;
@@ -45,17 +53,39 @@ public final class JobInfo {
     private final BuildDescription lastSuccessfulBuild;
     private final int nextBuildNumber;
 
-    public JobInfo(@Nonnull final String name, @Nonnull final String fullName, @Nonnull final String displayName,
-        @Nonnull final String fullDisplayName, @Nonnull final String description, @Nonnull final String url,
-        @Nonnull final Collection<BuildDescription> builds, @Nullable final BuildDescription lastBuild,
-        @Nullable final BuildDescription lastCompletedBuild, @Nullable final BuildDescription lastFailedBuild,
+    /**
+     * Instantiates a new Job info.
+     *
+     * @param jenkins             the jenkins
+     * @param name                the name
+     * @param fullName            the full name
+     * @param displayName         the display name
+     * @param fullDisplayName     the full display name
+     * @param description         the description
+     * @param url                 the url
+     * @param builds              the builds
+     * @param lastBuild           the last build
+     * @param lastCompletedBuild  the last completed build
+     * @param lastFailedBuild     the last failed build
+     * @param lastSuccessfulBuild the last successful build
+     * @param nextBuildNumber     the next build number
+     */
+    public JobInfo(@NotNull final Jenkins jenkins, @NotNull final String name,
+        @NotNull final String fullName, @NotNull final String displayName,
+        @NotNull final String fullDisplayName, @NotNull final String description,
+        @NotNull final String url, @NotNull final Collection<BuildDescription> builds,
+        @Nullable final BuildDescription lastBuild,
+        @Nullable final BuildDescription lastCompletedBuild,
+        @Nullable final BuildDescription lastFailedBuild,
         @Nullable final BuildDescription lastSuccessfulBuild, final int nextBuildNumber) {
-        this.name = Preconditions.checkNotNull(name, "Name must not be null");
-        this.fullName = Preconditions.checkNotNull(fullName, "Full name must not be null");
-        this.displayName = Preconditions.checkNotNull(displayName, "Display name must not be null");
-        this.fullDisplayName = Preconditions.checkNotNull(fullDisplayName, "Full display name must not be null");
-        this.description = Preconditions.checkNotNull(description, "Description must not be null");
-        this.url = Preconditions.checkNotNull(url, "Url must not be null");
+        this.jenkins = Preconditions.checkNotNull(jenkins, "Jenkins may not be null");
+        this.name = Preconditions.checkNotNull(name, "Name may not be null");
+        this.fullName = Preconditions.checkNotNull(fullName, "Full name may not be null");
+        this.displayName = Preconditions.checkNotNull(displayName, "Display name may not be null");
+        this.fullDisplayName =
+            Preconditions.checkNotNull(fullDisplayName, "Full display name may not be null");
+        this.description = Preconditions.checkNotNull(description, "Description may not be null");
+        this.url = Preconditions.checkNotNull(url, "Url may not be null");
         this.builds = Preconditions.checkNotNull(builds);
         this.lastBuild = lastBuild;
         this.lastCompletedBuild = lastCompletedBuild;
@@ -64,55 +94,115 @@ public final class JobInfo {
         this.nextBuildNumber = nextBuildNumber;
     }
 
-    public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
+    @Contract(pure = true) public String getName() {
         return name;
     }
 
-    public String getFullName() {
+    /**
+     * Gets full name.
+     *
+     * @return the full name
+     */
+    @Contract(pure = true) public String getFullName() {
         return fullName;
     }
 
-    public String getDisplayName() {
+    /**
+     * Gets display name.
+     *
+     * @return the display name
+     */
+    @Contract(pure = true) public String getDisplayName() {
         return displayName;
     }
 
-    public String getFullDisplayName() {
+    /**
+     * Gets full display name.
+     *
+     * @return the full display name
+     */
+    @Contract(pure = true) public String getFullDisplayName() {
         return fullDisplayName;
     }
 
-    public String getDescription() {
+    /**
+     * Gets description.
+     *
+     * @return the description
+     */
+    @Contract(pure = true) public String getDescription() {
         return description;
     }
 
-    public String getUrl() {
+    /**
+     * Get the jenkins URL of the job that this description is representing
+     *
+     * @return job url
+     */
+    @Override @Contract(pure = true) public String getUrl() {
         return url;
     }
 
-    public Collection<BuildDescription> getBuilds() {
+    /**
+     * Gets builds.
+     *
+     * @return the builds
+     */
+    @Contract(pure = true) public Collection<BuildDescription> getBuilds() {
         return builds;
     }
 
-    public BuildDescription getLastBuild() {
+    /**
+     * Gets last build.
+     *
+     * @return the last build
+     */
+    @Contract(pure = true) public BuildDescription getLastBuild() {
         return lastBuild;
     }
 
-    public BuildDescription getLastCompletedBuild() {
+    /**
+     * Gets last completed build.
+     *
+     * @return the last completed build
+     */
+    @Contract(pure = true) public BuildDescription getLastCompletedBuild() {
         return lastCompletedBuild;
     }
 
-    public BuildDescription getLastFailedBuild() {
+    /**
+     * Gets last failed build.
+     *
+     * @return the last failed build
+     */
+    @Contract(pure = true) public BuildDescription getLastFailedBuild() {
         return lastFailedBuild;
     }
 
-    public BuildDescription getLastSuccessfulBuild() {
+    /**
+     * Gets last successful build.
+     *
+     * @return the last successful build
+     */
+    @Contract(pure = true) public BuildDescription getLastSuccessfulBuild() {
         return lastSuccessfulBuild;
     }
 
-    public int getNextBuildNumber() {
+    /**
+     * Gets next build number.
+     *
+     * @return the next build number
+     */
+    @Contract(pure = true) public int getNextBuildNumber() {
         return nextBuildNumber;
     }
 
-    @Override public String toString() {
+    @NotNull @Contract(pure = true) @Override public String toString() {
         return "JobInfo{" + "name='" + name + '\'' + ", fullName='" + fullName + '\''
             + ", displayName='" + displayName + '\'' + ", fullDisplayName='" + fullDisplayName
             + '\'' + ", description='" + description + '\'' + ", url='" + url + '\'' + ", builds="
@@ -120,4 +210,29 @@ public final class JobInfo {
             + ", lastFailedBuild=" + lastFailedBuild + ", lastSuccessfulBuild="
             + lastSuccessfulBuild + ", nextBuildNumber=" + nextBuildNumber + '}';
     }
+
+    @Contract(pure = true) @Override public Jenkins getJenkins() {
+        return this.jenkins;
+    }
+
+    @Override public CompletableFuture<MasterNode> getParent() {
+        return this.jenkins.getMasterNode();
+    }
+
+    @Override public void setParent(@NotNull MasterNode parent) {
+    }
+
+    /**
+     * Gets build info.
+     *
+     * @param number the number
+     * @return the build info
+     */
+    public CompletableFuture<BuildInfo> getBuildInfo(final int number) {
+        return this.jenkins.getBuildInfo(this.name, number).thenApply(buildInfo -> {
+            buildInfo.setParent(JobInfo.this);
+            return buildInfo;
+        });
+    }
+
 }

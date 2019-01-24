@@ -26,10 +26,12 @@ package org.incendo.jenkins.json;
 
 import com.google.common.base.Preconditions;
 import com.google.gson.*;
+import org.incendo.jenkins.exception.JenkinsNodeReadException;
 import org.incendo.jenkins.objects.BuildDescription;
 import org.incendo.jenkins.objects.JobInfo;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -41,15 +43,19 @@ final class JobInfoDeserializer implements JsonDeserializer<JobInfo> {
 
     private final JsonJenkinsReader jsonJenkinsReader;
 
-    JobInfoDeserializer(@Nonnull final JsonJenkinsReader jsonJenkinsReader) {
-        Preconditions.checkNotNull(jsonJenkinsReader, "JsonJenkinsReader must not be null");
+    /**
+     * Instantiates a new Job info deserializer.
+     *
+     * @param jsonJenkinsReader the json jenkins reader
+     */
+    JobInfoDeserializer(@NotNull final JsonJenkinsReader jsonJenkinsReader) {
+        Preconditions.checkNotNull(jsonJenkinsReader, "JsonJenkinsReader may not be null");
         this.jsonJenkinsReader = jsonJenkinsReader;
     }
 
-    @Override
-    public JobInfo deserialize(final JsonElement json, final Type typeOfT,
-        final JsonDeserializationContext context)
-        throws JsonParseException {
+    @NotNull @Contract("_, _, _ -> new") @Override
+    public JobInfo deserialize(@NotNull final JsonElement json, final Type typeOfT,
+        final JsonDeserializationContext context) throws JsonParseException {
         final JsonObject jsonObject = json.getAsJsonObject();
         final String name = jsonObject.get("name").getAsString();
         final String fullName = jsonObject.get("fullName").getAsString();
@@ -66,31 +72,53 @@ final class JobInfoDeserializer implements JsonDeserializer<JobInfo> {
         }
         final BuildDescription lastBuild;
         if (jsonObject.has("lastBuild")) {
-            lastBuild = jsonJenkinsReader.getGson().fromJson(jsonObject.get("lastBuild"), BuildDescription.class);
+            lastBuild = getActualBuildDescription(builds, jsonJenkinsReader.getGson()
+                .fromJson(jsonObject.get("lastBuild"), BuildDescription.class));
         } else {
             lastBuild = null;
         }
         final BuildDescription lastCompletedBuild;
         if (jsonObject.has("lastCompletedBuild")) {
-            lastCompletedBuild = jsonJenkinsReader.getGson().fromJson(jsonObject.get("lastBuild"), BuildDescription.class);
+            lastCompletedBuild = getActualBuildDescription(builds, jsonJenkinsReader.getGson()
+                .fromJson(jsonObject.get("lastBuild"), BuildDescription.class));
         } else {
             lastCompletedBuild = null;
         }
         final BuildDescription lastFailedBuild;
         if (jsonObject.has("lastFailedBuild")) {
-            lastFailedBuild = jsonJenkinsReader.getGson().fromJson(jsonObject.get("lastBuild"), BuildDescription.class);
+            lastFailedBuild = getActualBuildDescription(builds, jsonJenkinsReader.getGson()
+                .fromJson(jsonObject.get("lastBuild"), BuildDescription.class));
         } else {
             lastFailedBuild = null;
         }
         final BuildDescription lastSuccessfulBuild;
         if (jsonObject.has("lastSuccessfulBuild")) {
-            lastSuccessfulBuild = jsonJenkinsReader.getGson().fromJson(jsonObject.get("lastBuild"), BuildDescription.class);
+            lastSuccessfulBuild = getActualBuildDescription(builds, jsonJenkinsReader.getGson()
+                .fromJson(jsonObject.get("lastBuild"), BuildDescription.class));
         } else {
             lastSuccessfulBuild = null;
         }
         final int nextBuildNumber = jsonObject.get("nextBuildNumber").getAsInt();
-        return new JobInfo(name, fullName, displayName, fullDisplayName, description, url, builds,
-            lastBuild, lastCompletedBuild, lastFailedBuild, lastSuccessfulBuild, nextBuildNumber);
+        final JobInfo jobInfo =
+            new JobInfo(this.jsonJenkinsReader.getJenkins(), name, fullName, displayName,
+                fullDisplayName, description, url, builds, lastBuild, lastCompletedBuild,
+                lastFailedBuild, lastSuccessfulBuild, nextBuildNumber);
+        builds.forEach(buildDescription -> buildDescription.setParent(jobInfo));
+        return jobInfo;
     }
+
+    private BuildDescription getActualBuildDescription(
+        @NotNull final Collection<BuildDescription> buildDescriptions,
+        @NotNull final BuildDescription query) {
+        for (final BuildDescription buildDescription : buildDescriptions) {
+            if (buildDescription.getNumber() == query.getNumber()) {
+                return buildDescription;
+            }
+        }
+        throw new JenkinsNodeReadException(
+            String.format("Could not find build description with number %d", query.getNumber()),
+            new RuntimeException());
+    }
+
 
 }

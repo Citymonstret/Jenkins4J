@@ -27,32 +27,46 @@ package org.incendo.jenkins.json;
 import com.google.common.base.Preconditions;
 import com.google.gson.*;
 import org.incendo.jenkins.objects.JobDescription;
-import org.incendo.jenkins.views.MasterView;
+import org.incendo.jenkins.objects.MasterNode;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collection;
 
-final class MasterDeserializer implements JsonDeserializer<MasterView> {
+/**
+ * Json deserializer for {@link MasterNode}
+ */
+final class MasterNodeDeserializer implements JsonDeserializer<MasterNode> {
 
     private final JsonJenkinsReader jsonJenkinsReader;
 
-    MasterDeserializer(@Nonnull final JsonJenkinsReader jsonJenkinsReader) {
-        Preconditions.checkNotNull(jsonJenkinsReader, "JsonJenkinsReader must not me null");
+    /**
+     * Instantiates a new Master node deserializer.
+     *
+     * @param jsonJenkinsReader the json jenkins reader
+     */
+    MasterNodeDeserializer(@NotNull final JsonJenkinsReader jsonJenkinsReader) {
+        Preconditions.checkNotNull(jsonJenkinsReader, "JsonJenkinsReader may not me null");
         this.jsonJenkinsReader = jsonJenkinsReader;
     }
 
-    @Override public MasterView deserialize(final JsonElement json, final Type typeOfT,
+    @NotNull @Contract("_, _, _ -> new") @Override
+    public MasterNode deserialize(@NotNull final JsonElement json, final Type typeOfT,
         final JsonDeserializationContext context) throws JsonParseException {
         final JsonObject jsonObject = json.getAsJsonObject();
         final JsonArray jobsArray = jsonObject.get("jobs").getAsJsonArray();
         final Collection<JobDescription> jobDescriptions = new ArrayList<>(jobsArray.size());
         for (final JsonElement element : jobsArray) {
-            final JobDescription description = jsonJenkinsReader.getGson().fromJson(element, JobDescription.class);
+            final JobDescription description =
+                jsonJenkinsReader.getGson().fromJson(element, JobDescription.class);
             jobDescriptions.add(description);
         }
-        return new MasterView(jobDescriptions);
+        final MasterNode masterNode =
+            new MasterNode(this.jsonJenkinsReader.getJenkins(), jobDescriptions);
+        jobDescriptions.forEach(jobDescription -> jobDescription.setParent(masterNode));
+        return masterNode;
     }
 
 }

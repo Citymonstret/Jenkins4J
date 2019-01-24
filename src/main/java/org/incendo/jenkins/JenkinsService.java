@@ -34,9 +34,33 @@ import retrofit2.http.Path;
  */
 interface JenkinsService {
 
+    /**
+     * Gets master node.
+     *
+     * @param type the type
+     * @return the master node
+     */
     @GET("api/{type}") Call<ResponseBody> getMasterNode(@Path("type") String type);
 
+    /**
+     * Gets job info.
+     *
+     * @param job  the job
+     * @param type the type
+     * @return the job info
+     */
     @GET("job/{job}/api/{type}") Call<ResponseBody> getJobInfo(@Path("job") String job,
         @Path("type") String type);
+
+    /**
+     * Gets build info.
+     *
+     * @param job   the job
+     * @param build the build
+     * @param type  the type
+     * @return the build info
+     */
+    @GET("job/{job}/{build}/api/{type}") Call<ResponseBody> getBuildInfo(@Path("job") String job,
+        @Path("build") int build, @Path("type") String type);
 
 }

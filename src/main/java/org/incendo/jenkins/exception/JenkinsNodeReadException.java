@@ -24,14 +24,20 @@
 
 package org.incendo.jenkins.exception;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Exception indicating that the library failed to parse a jenkins node
  */
 public class JenkinsNodeReadException extends IllegalStateException {
 
-    public JenkinsNodeReadException(@Nonnull final String message, @Nonnull final Throwable cause) {
+    /**
+     * Instantiates a new Jenkins node read exception.
+     *
+     * @param message the message
+     * @param cause   the cause
+     */
+    public JenkinsNodeReadException(@NotNull final String message, @NotNull final Throwable cause) {
         super(String.format("Failed to read jenkins node: %s", message), cause);
     }
 
