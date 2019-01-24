@@ -59,7 +59,7 @@ and the following dependency:
 <dependency>
     <groupId>com.github.Sauilitired</groupId>
     <artifactId>Jenkins4J</artifactId>
-    <version>master-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
 </dependency>
 ```
 
