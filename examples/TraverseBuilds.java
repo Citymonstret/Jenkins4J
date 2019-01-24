@@ -25,7 +25,6 @@
 package examples;
 
 import org.incendo.jenkins.Jenkins;
-import org.incendo.jenkins.objects.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
