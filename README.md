@@ -13,7 +13,7 @@ functionality it can be added.
 #### How does it work?
 Jenkins4J uses the Jenkins [remote access JSON API](https://wiki.jenkins.io/display/JENKINS/Remote+access+API)
 (in the future, XML support *may* be added). [Retrofit](https://github.com/square/retrofit) is used
-as the HTTL client, [Gson](https://github.com/google/gson) is used for JSON deserialization and 
+as the HTTP client, [Gson](https://github.com/google/gson) is used for JSON deserialization and 
 general [Guava](https://github.com/google/guava) utilities are used throughout Jenkins4J.
 
 #### How to use it?
