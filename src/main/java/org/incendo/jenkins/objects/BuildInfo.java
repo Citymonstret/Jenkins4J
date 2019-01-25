@@ -39,6 +39,7 @@ import java.util.concurrent.CompletableFuture;
  * Information regarding a Jenkins build
  * <p>
  * This is a child to {@link JobInfo}, and has the direct child {@link ArtifactDescription}
+ * {@inheritDoc}
  */
 @SuppressWarnings("unused") public final class BuildInfo
     implements Node, NodeChild<JobInfo>, NodePath {

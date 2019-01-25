@@ -25,10 +25,12 @@
 package org.incendo.jenkins;
 
 import com.google.common.base.Preconditions;
+import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import org.incendo.jenkins.exception.JenkinsBuildNotFoundException;
 import org.incendo.jenkins.exception.JenkinsJobNotFoundException;
 import org.incendo.jenkins.exception.JenkinsNodeReadException;
+import org.incendo.jenkins.exception.JenkinsNotAuthenticatedException;
 import org.incendo.jenkins.objects.BuildInfo;
 import org.incendo.jenkins.objects.JobInfo;
 import org.incendo.jenkins.objects.MasterNode;
@@ -52,16 +54,21 @@ public abstract class JenkinsReader {
     /**
      * Instantiates a new Jenkins reader.
      *
+     * @param jenkins             the jenkins instance
      * @param jenkinsPathProvider the jenkins path provider
      * @param jenkinsAPIType      the jenkins api type
      */
-    protected JenkinsReader(@NotNull final JenkinsPathProvider jenkinsPathProvider,
+    protected JenkinsReader(@NotNull final Jenkins jenkins,
+        @NotNull final JenkinsPathProvider jenkinsPathProvider,
         @NotNull final JenkinsAPIType jenkinsAPIType) {
         Preconditions.checkNotNull(jenkinsPathProvider, "Path provider may not be null");
         Preconditions.checkNotNull(jenkinsAPIType, "API type may not be null");
         this.jenkinsAPIType = jenkinsAPIType;
+        final OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        jenkins.getJenkinsAuthentication().initialize(builder);
         final Retrofit retrofit =
-            new Retrofit.Builder().baseUrl(jenkinsPathProvider.getBasePath()).build();
+            new Retrofit.Builder().client(builder.build())
+                .baseUrl(jenkinsPathProvider.getBasePath()).build();
         this.jenkinsService = retrofit.create(JenkinsService.class);
     }
 
@@ -103,6 +110,8 @@ public abstract class JenkinsReader {
             }
             if (response.code() == 404) {
                 throw new JenkinsJobNotFoundException(jobName);
+            } else if (response.code() == 403) {
+                throw new JenkinsNotAuthenticatedException(String.format("job/%s/", jobName));
             }
             final ResponseBody body = response.body();
             if (body == null) {
@@ -134,6 +143,8 @@ public abstract class JenkinsReader {
             }
             if (response.code() == 404) {
                 throw new JenkinsBuildNotFoundException(jobName, build);
+            } else if (response.code() == 403) {
+                throw new JenkinsNotAuthenticatedException(String.format("job/%s/%d/", jobName, build));
             }
             final ResponseBody body = response.body();
             if (body == null) {

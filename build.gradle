@@ -14,7 +14,7 @@ apply plugin: 'java'
 apply plugin: 'com.github.hierynomus.license'
 
 group 'org.incendo'
-version '1.0-SNAPSHOT'
+version '2.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8

@@ -37,6 +37,7 @@ import java.util.Collection;
 
 /**
  * Json deserializer for {@link MasterNode}
+ * {@inheritDoc}
  */
 final class MasterNodeDeserializer implements JsonDeserializer<MasterNode> {
 

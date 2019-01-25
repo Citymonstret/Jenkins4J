@@ -35,6 +35,7 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * The type Master node.
+ * {@inheritDoc}
  */
 @SuppressWarnings({"unused", "WeakerAccess"}) public class MasterNode implements Node, NodePath {
 

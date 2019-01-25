@@ -22,29 +22,21 @@
 // SOFTWARE.
 //
 
-package org.incendo.jenkins.json;
+package org.incendo.jenkins;
 
-import com.google.gson.*;
-import org.incendo.jenkins.objects.JobDescription;
+import okhttp3.OkHttpClient;
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Type;
-
 /**
- * Json deserializer for {@link JobDescription}
- * {@inheritDoc}
+ * Class used to authenticate the Jenkins session
  */
-final class JobDescriptionDeserializer implements JsonDeserializer<JobDescription> {
+public abstract class JenkinsAuthentication {
 
-    @NotNull @Override
-    public JobDescription deserialize(@NotNull final JsonElement json, final Type typeOfT,
-        final JsonDeserializationContext context) throws JsonParseException {
-        final JsonObject jsonObject = json.getAsJsonObject();
-        final String className = jsonObject.get("_class").getAsString();
-        final String name = jsonObject.get("name").getAsString();
-        final String url = jsonObject.get("url").getAsString();
-        final String color = jsonObject.get("color").getAsString();
-        return new JobDescription(className, name, url, color);
-    }
+    /**
+     * Initialize the authentication handling using a {@link OkHttpClient.Builder} instance
+     *
+     * @param clientBuilder builder to initialize with
+     */
+    protected abstract void initialize(@NotNull final OkHttpClient.Builder clientBuilder);
 
 }

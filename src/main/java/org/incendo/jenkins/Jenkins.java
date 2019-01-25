@@ -41,18 +41,22 @@ import java.util.concurrent.CompletableFuture;
  */
 @SuppressWarnings({"WeakerAccess", "unused"}) public class Jenkins {
 
+    private final JenkinsAuthentication jenkinsAuthentication;
     private final JenkinsPathProvider jenkinsPathProvider;
     private final JenkinsReader jenkinsReader;
 
     /**
      * Instantiates a new Jenkins.
      *
-     * @param jenkinsPathProvider the jenkins path provider
-     * @param jenkinsAPIType      the jenkins api type
+     * @param jenkinsPathProvider   the jenkins path provider
+     * @param jenkinsAuthentication the jenkins authentication handler
+     * @param jenkinsAPIType        the jenkins api type
      */
     Jenkins(@NotNull final JenkinsPathProvider jenkinsPathProvider,
+        @NotNull final JenkinsAuthentication jenkinsAuthentication,
         @NotNull final JenkinsAPIType jenkinsAPIType) {
         Preconditions.checkNotNull(jenkinsPathProvider, "Path provider may not be null");
+        this.jenkinsAuthentication = jenkinsAuthentication;
         this.jenkinsPathProvider = jenkinsPathProvider;
         final JenkinsReader jenkinsReader;
         if (jenkinsAPIType == JenkinsAPIType.JSON) {
@@ -61,6 +65,15 @@ import java.util.concurrent.CompletableFuture;
             throw new IllegalArgumentException(
                 String.format("Unimplemented API type: %s", jenkinsAPIType));
         }
+    }
+
+    /**
+     * Return the currently active Jenkins authentication handler
+     *
+     * @return jenkins authentication handler
+     */
+    public JenkinsAuthentication getJenkinsAuthentication() {
+        return this.jenkinsAuthentication;
     }
 
     /**

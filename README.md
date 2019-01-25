@@ -7,9 +7,6 @@ Jenkins4J supports the following actions:
 - Parse job data for builds and metadata
 - Parse job data for artifacts and metadata
 
-Jenkins4J does not *currently* support protected jobs, but if there is a demand for such 
-functionality it can be added.
-
 #### How does it work?
 Jenkins4J uses the Jenkins [remote access JSON API](https://wiki.jenkins.io/display/JENKINS/Remote+access+API)
 (in the future, XML support *may* be added). [Retrofit](https://github.com/square/retrofit) is used
@@ -21,6 +18,9 @@ In order to get started, create a new `Jenkins` instance using a `JenkinsBuilder
 ```java
 final Jenkins jenkins = Jenkins.newBuilder().withPath("https://your.jenkins.path/").build();
 ```
+
+If you need to authenticate against the Jenkins server, use the `withBasicAuthentication` method in
+the Jenkins builder
 
 Using this instance, you can fetch the master node, available jobs, specific job information and/or
 specific build information. 
@@ -59,9 +59,12 @@ and the following dependency:
 <dependency>
     <groupId>com.github.Sauilitired</groupId>
     <artifactId>Jenkins4J</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>2.0-SNAPSHOT</version>
 </dependency>
 ```
+
+##### Jenkins
+Jenkins4J is on Jenkins. The job can be found [here](https://ci.athion.net/job/Jenkins4J/)! 
 
 ### Contributions &amp; Contact
 Contributions are very welcome! The project uses the 

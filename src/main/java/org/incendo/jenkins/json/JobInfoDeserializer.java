@@ -38,6 +38,7 @@ import java.util.Collection;
 
 /**
  * Json deserializer for {@link JobInfo}
+ * {@inheritDoc}
  */
 final class JobInfoDeserializer implements JsonDeserializer<JobInfo> {
 

@@ -22,29 +22,39 @@
 // SOFTWARE.
 //
 
-package org.incendo.jenkins.json;
+package org.incendo.jenkins;
 
-import com.google.gson.*;
-import org.incendo.jenkins.objects.JobDescription;
+import com.google.common.base.Preconditions;
+import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Type;
+import java.io.IOException;
 
 /**
- * Json deserializer for {@link JobDescription}
+ * Jenkins authentication using the BASIC authentication protocol
  * {@inheritDoc}
  */
-final class JobDescriptionDeserializer implements JsonDeserializer<JobDescription> {
+@SuppressWarnings("WeakerAccess") public final class JenkinsBasicAuthentication
+    extends JenkinsAuthentication implements Interceptor {
 
-    @NotNull @Override
-    public JobDescription deserialize(@NotNull final JsonElement json, final Type typeOfT,
-        final JsonDeserializationContext context) throws JsonParseException {
-        final JsonObject jsonObject = json.getAsJsonObject();
-        final String className = jsonObject.get("_class").getAsString();
-        final String name = jsonObject.get("name").getAsString();
-        final String url = jsonObject.get("url").getAsString();
-        final String color = jsonObject.get("color").getAsString();
-        return new JobDescription(className, name, url, color);
+    private final String credentials;
+
+    public JenkinsBasicAuthentication(@NotNull final String username,
+        @NotNull final String password) {
+        Preconditions.checkNotNull(username, "Username may not be null");
+        Preconditions.checkNotNull(password, "Password may not be null");
+        this.credentials = Credentials.basic(username, password);
+    }
+
+    @Override public Response intercept(final Chain chain) throws IOException {
+        final Request request = chain.request();
+        final Request authenticatedRequest = request.newBuilder()
+            .header("Authorization", credentials).build();
+        return chain.proceed(authenticatedRequest);
+    }
+
+    @Override protected void initialize(OkHttpClient.@NotNull Builder clientBuilder) {
+        clientBuilder.addInterceptor(this);
     }
 
 }

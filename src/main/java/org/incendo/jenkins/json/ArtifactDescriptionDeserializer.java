@@ -33,6 +33,7 @@ import java.lang.reflect.Type;
 
 /**
  * Json deserializer for {@link ArtifactDescription}
+ * {@inheritDoc}
  */
 final class ArtifactDescriptionDeserializer implements JsonDeserializer<ArtifactDescription> {
 

@@ -36,6 +36,7 @@ import java.util.concurrent.CompletableFuture;
  * to get a downloadable artifact link ({@link #getUrl()}
  * <p>
  * This is a child to {@link BuildInfo}
+ * {@inheritDoc}
  */
 @SuppressWarnings("unused") public final class ArtifactDescription
     implements NodeChild<BuildInfo>, NodePath {

@@ -22,29 +22,23 @@
 // SOFTWARE.
 //
 
-package org.incendo.jenkins.json;
+package org.incendo.jenkins.exception;
 
-import com.google.gson.*;
-import org.incendo.jenkins.objects.JobDescription;
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Type;
-
 /**
- * Json deserializer for {@link JobDescription}
- * {@inheritDoc}
+ * Thrown when the client lacks read permissions
  */
-final class JobDescriptionDeserializer implements JsonDeserializer<JobDescription> {
+public final class JenkinsNotAuthenticatedException extends JenkinsNodeReadException {
 
-    @NotNull @Override
-    public JobDescription deserialize(@NotNull final JsonElement json, final Type typeOfT,
-        final JsonDeserializationContext context) throws JsonParseException {
-        final JsonObject jsonObject = json.getAsJsonObject();
-        final String className = jsonObject.get("_class").getAsString();
-        final String name = jsonObject.get("name").getAsString();
-        final String url = jsonObject.get("url").getAsString();
-        final String color = jsonObject.get("color").getAsString();
-        return new JobDescription(className, name, url, color);
+    /**
+     * Instantiates a new Jenkins job not found exception.
+     *
+     * @param path the path
+     */
+    public JenkinsNotAuthenticatedException(@NotNull final String path) {
+        super(String.format("The current user is not allowed to read path '%s'", path),
+            new RuntimeException());
     }
 
 }

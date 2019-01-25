@@ -32,6 +32,7 @@ import java.lang.reflect.Type;
 
 /**
  * Json deserializer for {@link BuildDescription}
+ * {@inheritDoc}
  */
 final class BuildDescriptionDeserializer implements JsonDeserializer<BuildDescription> {
 

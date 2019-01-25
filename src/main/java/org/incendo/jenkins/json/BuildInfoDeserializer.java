@@ -36,6 +36,7 @@ import java.util.Collection;
 
 /**
  * Json deserializer for {@link BuildInfo}
+ * {@inheritDoc}
  */
 final class BuildInfoDeserializer implements JsonDeserializer<BuildInfo> {
 

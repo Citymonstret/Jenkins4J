@@ -27,10 +27,11 @@ package org.incendo.jenkins;
 /**
  * The enum Jenkins api type.
  */
-public enum JenkinsAPIType {/**
- * Json jenkins api type.
- */
-JSON,
+public enum JenkinsAPIType {
+    /**
+    * Json jenkins api type.
+     */
+    JSON,
     /**
      * Xml jenkins api type.
      */

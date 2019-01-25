@@ -35,6 +35,7 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * The type Job info.
+ * {@inheritDoc}
  */
 @SuppressWarnings({"unused", "WeakerAccess"}) public final class JobInfo
     implements Node, NodeChild<MasterNode>, NodePath {

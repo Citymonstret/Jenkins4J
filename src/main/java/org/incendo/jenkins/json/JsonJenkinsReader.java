@@ -39,6 +39,7 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * {@link JenkinsReader} using Google Gson
+ * {@inheritDoc}
  */
 public final class JsonJenkinsReader extends JenkinsReader {
 
@@ -53,7 +54,7 @@ public final class JsonJenkinsReader extends JenkinsReader {
      */
     public JsonJenkinsReader(@NotNull final Jenkins jenkins,
         @NotNull JenkinsPathProvider jenkinsPathProvider) {
-        super(jenkinsPathProvider, JenkinsAPIType.JSON);
+        super(jenkins, jenkinsPathProvider, JenkinsAPIType.JSON);
         this.jenkins = Preconditions.checkNotNull(jenkins, "Jenkins may not be null");
         this.gson = new GsonBuilder()
             .registerTypeAdapter(JobDescription.class, new JobDescriptionDeserializer())

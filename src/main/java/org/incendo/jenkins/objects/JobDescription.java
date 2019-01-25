@@ -33,6 +33,7 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * The type Job description.
+ * {@inheritDoc}
  */
 @SuppressWarnings("unused") public final class JobDescription
     implements NodeChild<MasterNode>, NodePath {

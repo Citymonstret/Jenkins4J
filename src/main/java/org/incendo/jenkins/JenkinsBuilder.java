@@ -25,6 +25,7 @@
 package org.incendo.jenkins;
 
 import com.google.common.base.Preconditions;
+import okhttp3.OkHttpClient;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -35,6 +36,10 @@ import org.jetbrains.annotations.NotNull;
 
     private String jenkinsPath;
     private JenkinsAPIType jenkinsAPIType = JenkinsAPIType.JSON;
+    private JenkinsAuthentication jenkinsAuthentication = new JenkinsAuthentication() {
+        @Override protected void initialize(OkHttpClient.@NotNull Builder clientBuilder) {
+        }
+    };
 
     /**
      * Instantiates a new Jenkins builder.
@@ -59,6 +64,14 @@ import org.jetbrains.annotations.NotNull;
         return this;
     }
 
+    public JenkinsBuilder withBasicAuthentication(@NotNull final String username,
+        @NotNull final String password) {
+        Preconditions.checkNotNull(username, "Username may not be null");
+        Preconditions.checkNotNull(password, "Password may not be null");
+        this.jenkinsAuthentication = new JenkinsBasicAuthentication(username, password);
+        return this;
+    }
+
     /**
      * Compile the information into a {@link Jenkins} instance
      *
@@ -67,7 +80,7 @@ import org.jetbrains.annotations.NotNull;
     public Jenkins build() {
         Preconditions.checkNotNull(jenkinsPath, "Path must be specified");
         final JenkinsPathProvider jenkinsPathProvider = new JenkinsPathProvider(this.jenkinsPath);
-        return new Jenkins(jenkinsPathProvider, this.jenkinsAPIType);
+        return new Jenkins(jenkinsPathProvider, this.jenkinsAuthentication, this.jenkinsAPIType);
     }
 
 }
