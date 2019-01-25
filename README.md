@@ -3,7 +3,7 @@ Simple and effective non-blocking Jenkins API wrapper written in Java
 
 #### What can it do?
 Jenkins4J supports the following actions:
-- Get all publicly available jobs from a Jenkins instance
+- Get all publicly (or protected, using authentication) available jobs from a Jenkins instance
 - Parse job data for builds and metadata
 - Parse job data for artifacts and metadata
 
