@@ -64,6 +64,13 @@ import org.jetbrains.annotations.NotNull;
         return this;
     }
 
+    /**
+     * Use BASIC authentication in this Jenkins instance
+     *
+     * @param username jenkins username
+     * @param password jenkins password
+     * @return this {@link JenkinsBuilder instance}
+     */
     public JenkinsBuilder withBasicAuthentication(@NotNull final String username,
         @NotNull final String password) {
         Preconditions.checkNotNull(username, "Username may not be null");

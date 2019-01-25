@@ -34,12 +34,12 @@ import java.io.IOException;
  * Jenkins authentication using the BASIC authentication protocol
  * {@inheritDoc}
  */
-@SuppressWarnings("WeakerAccess") public final class JenkinsBasicAuthentication
+public final class JenkinsBasicAuthentication
     extends JenkinsAuthentication implements Interceptor {
 
     private final String credentials;
 
-    public JenkinsBasicAuthentication(@NotNull final String username,
+    JenkinsBasicAuthentication(@NotNull final String username,
         @NotNull final String password) {
         Preconditions.checkNotNull(username, "Username may not be null");
         Preconditions.checkNotNull(password, "Password may not be null");
