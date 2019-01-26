@@ -32,7 +32,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Builder class for {@link Jenkins} instances
  */
-@SuppressWarnings("unused") public class JenkinsBuilder {
+@SuppressWarnings({"unused","WeakerAccess"}) public class JenkinsBuilder {
 
     private String jenkinsPath;
     private JenkinsAPIType jenkinsAPIType = JenkinsAPIType.JSON;

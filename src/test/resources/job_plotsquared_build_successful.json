@@ -1,0 +1,119 @@
+{
+    "_class": "hudson.model.FreeStyleBuild",
+    "actions": [
+      {
+        "_class": "hudson.model.CauseAction",
+        "causes": [
+          {
+            "_class": "hudson.model.Cause$UserIdCause",
+            "shortDescription": "Started by user chamunks",
+            "userId": "chamunks",
+            "userName": "chamunks"
+          }
+        ]
+      },
+      {
+        "_class": "hudson.plugins.git.util.BuildData",
+        "buildsByBranchName": {
+          "refs/remotes/origin/master": {
+            "_class": "hudson.plugins.git.util.Build",
+            "buildNumber": 1,
+            "buildResult": null,
+            "marked": {
+              "SHA1": "b294ff528f1f5321a13a438aa1f85c4fffb783ef",
+              "branch": [
+                {
+                  "SHA1": "b294ff528f1f5321a13a438aa1f85c4fffb783ef",
+                  "name": "refs/remotes/origin/master"
+                }
+              ]
+            },
+            "revision": {
+              "SHA1": "b294ff528f1f5321a13a438aa1f85c4fffb783ef",
+              "branch": [
+                {
+                  "SHA1": "b294ff528f1f5321a13a438aa1f85c4fffb783ef",
+                  "name": "refs/remotes/origin/master"
+                }
+              ]
+            }
+          }
+        },
+        "lastBuiltRevision": {
+          "SHA1": "b294ff528f1f5321a13a438aa1f85c4fffb783ef",
+          "branch": [
+            {
+              "SHA1": "b294ff528f1f5321a13a438aa1f85c4fffb783ef",
+              "name": "refs/remotes/origin/master"
+            }
+          ]
+        },
+        "remoteUrls": [
+          "https://github.com/IntellectualSites/PlotSquared.git"
+        ],
+        "scmName": ""
+      },
+      {
+        "_class": "hudson.plugins.git.GitTagAction"
+      },
+      {
+      },
+      {
+      }
+    ],
+    "artifacts": [
+      {
+        "displayPath": "PlotSquared-API-3.3.1.jar",
+        "fileName": "PlotSquared-API-3.3.1.jar",
+        "relativePath": "target/PlotSquared-API-3.3.1.jar"
+      },
+      {
+        "displayPath": "PlotSquared-Bukkit-3.3.1.jar",
+        "fileName": "PlotSquared-Bukkit-3.3.1.jar",
+        "relativePath": "target/PlotSquared-Bukkit-3.3.1.jar"
+      },
+      {
+        "displayPath": "PlotSquared-Bukkit-3.3.1.jar.MD5",
+        "fileName": "PlotSquared-Bukkit-3.3.1.jar.MD5",
+        "relativePath": "target/PlotSquared-Bukkit-3.3.1.jar.MD5"
+      },
+      {
+        "displayPath": "PlotSquared-Bukkit.jar",
+        "fileName": "PlotSquared-Bukkit.jar",
+        "relativePath": "target/PlotSquared-Bukkit.jar"
+      },
+      {
+        "displayPath": "PlotSquared-Sponge-3.3.1.jar",
+        "fileName": "PlotSquared-Sponge-3.3.1.jar",
+        "relativePath": "target/PlotSquared-Sponge-3.3.1.jar"
+      },
+      {
+        "displayPath": "PlotSquared-Sponge-3.3.1.jar.MD5",
+        "fileName": "PlotSquared-Sponge-3.3.1.jar.MD5",
+        "relativePath": "target/PlotSquared-Sponge-3.3.1.jar.MD5"
+      }
+    ],
+    "building": false,
+    "description": null,
+    "displayName": "#1",
+    "duration": 18564,
+    "estimatedDuration": 30922,
+    "executor": null,
+    "fullDisplayName": "PlotSquared #1",
+    "id": "1",
+    "keepLog": false,
+    "number": 1,
+    "queueId": 231,
+    "result": "SUCCESS",
+    "timestamp": 1456940347088,
+    "url": "https://ci.athion.net/job/PlotSquared/1/",
+    "builtOn": "",
+    "changeSet": {
+      "_class": "hudson.plugins.git.GitChangeSetList",
+      "items": [
+      ],
+      "kind": "git"
+    },
+    "culprits": [
+    ]
+  }

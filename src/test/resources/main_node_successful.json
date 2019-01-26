@@ -1,0 +1,131 @@
+{
+  "_class": "hudson.model.Hudson",
+  "assignedLabels": [
+    {
+      "name": "master"
+    }
+  ],
+  "mode": "NORMAL",
+  "nodeDescription": "the master Jenkins node",
+  "nodeName": "",
+  "numExecutors": 2,
+  "description": null,
+  "jobs": [
+    {
+      "_class": "hudson.model.FreeStyleProject",
+      "name": "BuildTools",
+      "url": "https://ci.athion.net/job/BuildTools/",
+      "color": "blue"
+    },
+    {
+      "_class": "hudson.model.FreeStyleProject",
+      "name": "FastAsyncRedstone",
+      "url": "https://ci.athion.net/job/FastAsyncRedstone/",
+      "color": "blue"
+    },
+    {
+      "_class": "hudson.model.FreeStyleProject",
+      "name": "FastAsyncWorldEdit",
+      "url": "https://ci.athion.net/job/FastAsyncWorldEdit/",
+      "color": "blue"
+    },
+    {
+      "_class": "hudson.model.FreeStyleProject",
+      "name": "FAWE-1.13",
+      "url": "https://ci.athion.net/job/FAWE-1.13/",
+      "color": "blue"
+    },
+    {
+      "_class": "hudson.model.FreeStyleProject",
+      "name": "FAWE-CraftBook-1.13",
+      "url": "https://ci.athion.net/job/FAWE-CraftBook-1.13/",
+      "color": "red"
+    },
+    {
+      "_class": "hudson.model.FreeStyleProject",
+      "name": "FAWE-CustomStructures",
+      "url": "https://ci.athion.net/job/FAWE-CustomStructures/",
+      "color": "blue"
+    },
+    {
+      "_class": "hudson.model.FreeStyleProject",
+      "name": "FAWE-WorldGuard-1.13",
+      "url": "https://ci.athion.net/job/FAWE-WorldGuard-1.13/",
+      "color": "blue"
+    },
+    {
+      "_class": "hudson.model.FreeStyleProject",
+      "name": "FigAdmin",
+      "url": "https://ci.athion.net/job/FigAdmin/",
+      "color": "blue"
+    },
+    {
+      "_class": "hudson.maven.MavenModuleSet",
+      "name": "IP-Check-Athion",
+      "url": "https://ci.athion.net/job/IP-Check-Athion/",
+      "color": "blue"
+    },
+    {
+      "_class": "hudson.model.FreeStyleProject",
+      "name": "Jenkins4J",
+      "url": "https://ci.athion.net/job/Jenkins4J/",
+      "color": "blue"
+    },
+    {
+      "_class": "hudson.maven.MavenModuleSet",
+      "name": "PlaceholderAPI",
+      "url": "https://ci.athion.net/job/PlaceholderAPI/",
+      "color": "blue"
+    },
+    {
+      "_class": "hudson.model.FreeStyleProject",
+      "name": "PlotSquared",
+      "url": "https://ci.athion.net/job/PlotSquared/",
+      "color": "blue"
+    },
+    {
+      "_class": "hudson.model.FreeStyleProject",
+      "name": "PlotSquared-Breaking",
+      "url": "https://ci.athion.net/job/PlotSquared-Breaking/",
+      "color": "blue"
+    },
+    {
+      "_class": "hudson.model.FreeStyleProject",
+      "name": "RedEdit",
+      "url": "https://ci.athion.net/job/RedEdit/",
+      "color": "red"
+    },
+    {
+      "_class": "hudson.model.FreeStyleProject",
+      "name": "WorldEdit-1.7.10",
+      "url": "https://ci.athion.net/job/WorldEdit-1.7.10/",
+      "color": "blue"
+    }
+  ],
+  "overallLoad": {
+  },
+  "primaryView": {
+    "_class": "hudson.model.ListView",
+    "name": "Public",
+    "url": "https://ci.athion.net/"
+  },
+  "quietingDown": false,
+  "slaveAgentPort": 0,
+  "unlabeledLoad": {
+    "_class": "jenkins.model.UnlabeledLoadStatistics"
+  },
+  "useCrumbs": true,
+  "useSecurity": true,
+  "views": [
+    {
+      "_class": "hudson.model.ListView",
+      "name": "Everything",
+      "url": "https://ci.athion.net/view/Everything/"
+    },
+    {
+      "_class": "hudson.model.ListView",
+      "name": "Public",
+      "url": "https://ci.athion.net/"
+    }
+  ]
+}

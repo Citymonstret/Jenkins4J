@@ -1,0 +1,598 @@
+{
+    "_class": "hudson.model.FreeStyleProject",
+    "actions": [
+      {
+      },
+      {
+      },
+      {
+      },
+      {
+      },
+      {
+      },
+      {
+      },
+      {
+      },
+      {
+        "_class": "com.cloudbees.plugins.credentials.ViewCredentialsAction"
+      }
+    ],
+    "description": "",
+    "displayName": "PlotSquared",
+    "displayNameOrNull": null,
+    "fullDisplayName": "PlotSquared",
+    "fullName": "PlotSquared",
+    "name": "PlotSquared",
+    "url": "https://ci.athion.net/job/PlotSquared/",
+    "buildable": true,
+    "builds": [
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 686,
+        "url": "https://ci.athion.net/job/PlotSquared/686/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 685,
+        "url": "https://ci.athion.net/job/PlotSquared/685/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 684,
+        "url": "https://ci.athion.net/job/PlotSquared/684/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 683,
+        "url": "https://ci.athion.net/job/PlotSquared/683/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 682,
+        "url": "https://ci.athion.net/job/PlotSquared/682/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 681,
+        "url": "https://ci.athion.net/job/PlotSquared/681/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 680,
+        "url": "https://ci.athion.net/job/PlotSquared/680/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 679,
+        "url": "https://ci.athion.net/job/PlotSquared/679/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 678,
+        "url": "https://ci.athion.net/job/PlotSquared/678/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 677,
+        "url": "https://ci.athion.net/job/PlotSquared/677/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 676,
+        "url": "https://ci.athion.net/job/PlotSquared/676/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 675,
+        "url": "https://ci.athion.net/job/PlotSquared/675/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 674,
+        "url": "https://ci.athion.net/job/PlotSquared/674/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 673,
+        "url": "https://ci.athion.net/job/PlotSquared/673/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 672,
+        "url": "https://ci.athion.net/job/PlotSquared/672/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 671,
+        "url": "https://ci.athion.net/job/PlotSquared/671/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 670,
+        "url": "https://ci.athion.net/job/PlotSquared/670/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 669,
+        "url": "https://ci.athion.net/job/PlotSquared/669/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 668,
+        "url": "https://ci.athion.net/job/PlotSquared/668/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 667,
+        "url": "https://ci.athion.net/job/PlotSquared/667/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 666,
+        "url": "https://ci.athion.net/job/PlotSquared/666/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 665,
+        "url": "https://ci.athion.net/job/PlotSquared/665/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 664,
+        "url": "https://ci.athion.net/job/PlotSquared/664/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 663,
+        "url": "https://ci.athion.net/job/PlotSquared/663/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 662,
+        "url": "https://ci.athion.net/job/PlotSquared/662/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 661,
+        "url": "https://ci.athion.net/job/PlotSquared/661/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 660,
+        "url": "https://ci.athion.net/job/PlotSquared/660/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 659,
+        "url": "https://ci.athion.net/job/PlotSquared/659/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 657,
+        "url": "https://ci.athion.net/job/PlotSquared/657/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 656,
+        "url": "https://ci.athion.net/job/PlotSquared/656/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 655,
+        "url": "https://ci.athion.net/job/PlotSquared/655/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 654,
+        "url": "https://ci.athion.net/job/PlotSquared/654/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 653,
+        "url": "https://ci.athion.net/job/PlotSquared/653/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 652,
+        "url": "https://ci.athion.net/job/PlotSquared/652/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 651,
+        "url": "https://ci.athion.net/job/PlotSquared/651/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 650,
+        "url": "https://ci.athion.net/job/PlotSquared/650/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 649,
+        "url": "https://ci.athion.net/job/PlotSquared/649/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 648,
+        "url": "https://ci.athion.net/job/PlotSquared/648/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 647,
+        "url": "https://ci.athion.net/job/PlotSquared/647/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 646,
+        "url": "https://ci.athion.net/job/PlotSquared/646/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 645,
+        "url": "https://ci.athion.net/job/PlotSquared/645/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 644,
+        "url": "https://ci.athion.net/job/PlotSquared/644/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 643,
+        "url": "https://ci.athion.net/job/PlotSquared/643/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 642,
+        "url": "https://ci.athion.net/job/PlotSquared/642/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 641,
+        "url": "https://ci.athion.net/job/PlotSquared/641/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 640,
+        "url": "https://ci.athion.net/job/PlotSquared/640/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 639,
+        "url": "https://ci.athion.net/job/PlotSquared/639/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 638,
+        "url": "https://ci.athion.net/job/PlotSquared/638/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 637,
+        "url": "https://ci.athion.net/job/PlotSquared/637/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 636,
+        "url": "https://ci.athion.net/job/PlotSquared/636/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 635,
+        "url": "https://ci.athion.net/job/PlotSquared/635/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 634,
+        "url": "https://ci.athion.net/job/PlotSquared/634/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 633,
+        "url": "https://ci.athion.net/job/PlotSquared/633/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 632,
+        "url": "https://ci.athion.net/job/PlotSquared/632/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 631,
+        "url": "https://ci.athion.net/job/PlotSquared/631/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 630,
+        "url": "https://ci.athion.net/job/PlotSquared/630/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 629,
+        "url": "https://ci.athion.net/job/PlotSquared/629/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 628,
+        "url": "https://ci.athion.net/job/PlotSquared/628/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 627,
+        "url": "https://ci.athion.net/job/PlotSquared/627/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 626,
+        "url": "https://ci.athion.net/job/PlotSquared/626/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 625,
+        "url": "https://ci.athion.net/job/PlotSquared/625/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 624,
+        "url": "https://ci.athion.net/job/PlotSquared/624/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 623,
+        "url": "https://ci.athion.net/job/PlotSquared/623/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 622,
+        "url": "https://ci.athion.net/job/PlotSquared/622/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 621,
+        "url": "https://ci.athion.net/job/PlotSquared/621/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 620,
+        "url": "https://ci.athion.net/job/PlotSquared/620/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 619,
+        "url": "https://ci.athion.net/job/PlotSquared/619/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 618,
+        "url": "https://ci.athion.net/job/PlotSquared/618/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 617,
+        "url": "https://ci.athion.net/job/PlotSquared/617/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 616,
+        "url": "https://ci.athion.net/job/PlotSquared/616/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 615,
+        "url": "https://ci.athion.net/job/PlotSquared/615/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 614,
+        "url": "https://ci.athion.net/job/PlotSquared/614/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 613,
+        "url": "https://ci.athion.net/job/PlotSquared/613/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 612,
+        "url": "https://ci.athion.net/job/PlotSquared/612/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 611,
+        "url": "https://ci.athion.net/job/PlotSquared/611/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 610,
+        "url": "https://ci.athion.net/job/PlotSquared/610/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 609,
+        "url": "https://ci.athion.net/job/PlotSquared/609/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 608,
+        "url": "https://ci.athion.net/job/PlotSquared/608/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 607,
+        "url": "https://ci.athion.net/job/PlotSquared/607/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 606,
+        "url": "https://ci.athion.net/job/PlotSquared/606/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 605,
+        "url": "https://ci.athion.net/job/PlotSquared/605/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 604,
+        "url": "https://ci.athion.net/job/PlotSquared/604/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 603,
+        "url": "https://ci.athion.net/job/PlotSquared/603/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 602,
+        "url": "https://ci.athion.net/job/PlotSquared/602/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 601,
+        "url": "https://ci.athion.net/job/PlotSquared/601/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 600,
+        "url": "https://ci.athion.net/job/PlotSquared/600/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 599,
+        "url": "https://ci.athion.net/job/PlotSquared/599/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 598,
+        "url": "https://ci.athion.net/job/PlotSquared/598/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 597,
+        "url": "https://ci.athion.net/job/PlotSquared/597/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 596,
+        "url": "https://ci.athion.net/job/PlotSquared/596/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 595,
+        "url": "https://ci.athion.net/job/PlotSquared/595/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 594,
+        "url": "https://ci.athion.net/job/PlotSquared/594/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 593,
+        "url": "https://ci.athion.net/job/PlotSquared/593/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 592,
+        "url": "https://ci.athion.net/job/PlotSquared/592/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 591,
+        "url": "https://ci.athion.net/job/PlotSquared/591/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 590,
+        "url": "https://ci.athion.net/job/PlotSquared/590/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 589,
+        "url": "https://ci.athion.net/job/PlotSquared/589/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 588,
+        "url": "https://ci.athion.net/job/PlotSquared/588/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 587,
+        "url": "https://ci.athion.net/job/PlotSquared/587/"
+      },
+      {
+        "_class": "hudson.model.FreeStyleBuild",
+        "number": 586,
+        "url": "https://ci.athion.net/job/PlotSquared/586/"
+      }
+    ],
+    "color": "blue",
+    "firstBuild": {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 1,
+      "url": "https://ci.athion.net/job/PlotSquared/1/"
+    },
+    "healthReport": [
+      {
+        "description": "Build stability: No recent builds failed.",
+        "iconClassName": "icon-health-80plus",
+        "iconUrl": "health-80plus.png",
+        "score": 100
+      }
+    ],
+    "inQueue": false,
+    "keepDependencies": false,
+    "lastBuild": {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 686,
+      "url": "https://ci.athion.net/job/PlotSquared/686/"
+    },
+    "lastCompletedBuild": {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 686,
+      "url": "https://ci.athion.net/job/PlotSquared/686/"
+    },
+    "lastFailedBuild": {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 654,
+      "url": "https://ci.athion.net/job/PlotSquared/654/"
+    },
+    "lastStableBuild": {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 686,
+      "url": "https://ci.athion.net/job/PlotSquared/686/"
+    },
+    "lastSuccessfulBuild": {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 686,
+      "url": "https://ci.athion.net/job/PlotSquared/686/"
+    },
+    "lastUnstableBuild": null,
+    "lastUnsuccessfulBuild": {
+      "_class": "hudson.model.FreeStyleBuild",
+      "number": 654,
+      "url": "https://ci.athion.net/job/PlotSquared/654/"
+    },
+    "nextBuildNumber": 687,
+    "property": [
+      {
+        "_class": "hudson.security.AuthorizationMatrixProperty"
+      },
+      {
+        "_class": "com.coravy.hudson.plugins.github.GithubProjectProperty"
+      }
+    ],
+    "queueItem": null,
+    "concurrentBuild": false,
+    "downstreamProjects": [
+    ],
+    "labelExpression": null,
+    "scm": {
+      "_class": "hudson.plugins.git.GitSCM"
+    },
+    "upstreamProjects": [
+    ]
+  }
