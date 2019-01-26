@@ -26,7 +26,6 @@ package org.incendo.jenkins.objects;
 
 import com.google.common.base.Preconditions;
 import org.incendo.jenkins.Jenkins;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -94,7 +93,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the boolean
      */
-    @Contract(pure = true) public boolean isBuilding() {
+    public boolean isBuilding() {
         return building;
     }
 
@@ -103,7 +102,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the result
      */
-    @Contract(pure = true) public String getResult() {
+    public String getResult() {
         return result;
     }
 
@@ -112,7 +111,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the display name
      */
-    @Contract(pure = true) public String getDisplayName() {
+    public String getDisplayName() {
         return displayName;
     }
 
@@ -121,7 +120,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the full display name
      */
-    @Contract(pure = true) public String getFullDisplayName() {
+    public String getFullDisplayName() {
         return fullDisplayName;
     }
 
@@ -130,7 +129,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the id
      */
-    @Contract(pure = true) public int getId() {
+    public int getId() {
         return id;
     }
 
@@ -139,7 +138,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the duration
      */
-    @Contract(pure = true) public long getDuration() {
+    public long getDuration() {
         return duration;
     }
 
@@ -148,7 +147,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the timestamp
      */
-    @Contract(pure = true) public long getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 
@@ -157,7 +156,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return build url
      */
-    @Override @Contract(pure = true) public String getUrl() {
+    @Override public String getUrl() {
         return url;
     }
 
@@ -166,12 +165,11 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return artifact descriptions
      */
-    @NotNull @Contract(pure = true) public Collection<ArtifactDescription> getArtifacts() {
+    @NotNull public Collection<ArtifactDescription> getArtifacts() {
         return Collections.unmodifiableCollection(this.artifacts);
     }
 
-    @Contract(value = "null -> false", pure = true) @Override
-    public boolean equals(final Object o) {
+    @Override public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
@@ -192,14 +190,14 @@ import java.util.concurrent.CompletableFuture;
                 artifacts);
     }
 
-    @NotNull @Contract(pure = true) @Override public String toString() {
+    @NotNull @Override public String toString() {
         return "BuildInfo{" + "building=" + building + ", result='" + result + '\''
             + ", displayName='" + displayName + '\'' + ", fullDisplayName='" + fullDisplayName
             + '\'' + ", id=" + id + ", duration=" + duration + ", timestamp=" + timestamp
             + ", url='" + url + '\'' + ", artifacts=" + artifacts + '}';
     }
 
-    @NotNull @Contract(pure = true) @Override public CompletableFuture<JobInfo> getParent() {
+    @NotNull @Override public CompletableFuture<JobInfo> getParent() {
         if (this.parent != null) {
             return CompletableFuture.completedFuture(this.parent);
         }
@@ -243,7 +241,8 @@ import java.util.concurrent.CompletableFuture;
         this.parent = parent;
     }
 
-    @Contract(pure = true) @NotNull @Override public Jenkins getJenkins() {
+    @NotNull @Override public Jenkins getJenkins() {
         return this.jenkins;
     }
+
 }

@@ -33,7 +33,6 @@ import org.incendo.jenkins.JenkinsPathProvider;
 import org.incendo.jenkins.JenkinsReader;
 import org.incendo.jenkins.exception.JenkinsNodeReadException;
 import org.incendo.jenkins.objects.*;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -86,7 +85,7 @@ public final class JsonJenkinsReader extends JenkinsReader {
      *
      * @return the gson
      */
-    @Contract(pure = true) Gson getGson() {
+    Gson getGson() {
         return this.gson;
     }
 
@@ -95,7 +94,7 @@ public final class JsonJenkinsReader extends JenkinsReader {
      *
      * @return the jenkins
      */
-    @Contract(pure = true) Jenkins getJenkins() {
+    Jenkins getJenkins() {
         return this.jenkins;
     }
 

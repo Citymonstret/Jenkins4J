@@ -26,7 +26,6 @@ package org.incendo.jenkins.objects;
 
 import com.google.common.base.Preconditions;
 import org.incendo.jenkins.Jenkins;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
@@ -83,7 +82,7 @@ import java.util.concurrent.CompletableFuture;
         return this.jenkins.getJobInfo(jobName);
     }
 
-    @Contract(pure = true) @Override public Jenkins getJenkins() {
+    @Override public Jenkins getJenkins() {
         return this.jenkins;
     }
 

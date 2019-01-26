@@ -25,7 +25,6 @@
 package org.incendo.jenkins.objects;
 
 import com.google.common.base.Preconditions;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -67,7 +66,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the display path
      */
-    @Contract(pure = true) public String getDisplayPath() {
+    public String getDisplayPath() {
         return displayPath;
     }
 
@@ -76,7 +75,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the file name
      */
-    @Contract(pure = true) public String getFileName() {
+    public String getFileName() {
         return fileName;
     }
 
@@ -85,12 +84,11 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the relative path
      */
-    @Contract(pure = true) public String getRelativePath() {
+    public String getRelativePath() {
         return relativePath;
     }
 
-    @Contract(value = "null -> false", pure = true) @Override
-    public boolean equals(final Object o) {
+    @Override public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
@@ -106,12 +104,12 @@ import java.util.concurrent.CompletableFuture;
         return Objects.hash(displayPath, fileName, relativePath);
     }
 
-    @NotNull @Contract(pure = true) @Override public String toString() {
+    @NotNull @Override public String toString() {
         return "ArtifactInfo{" + "displayPath='" + displayPath + '\'' + ", fileName='" + fileName
             + '\'' + ", relativePath='" + relativePath + '\'' + '}';
     }
 
-    @NotNull @Contract(pure = true) @Override public CompletableFuture<BuildInfo> getParent() {
+    @NotNull @Override public CompletableFuture<BuildInfo> getParent() {
         return CompletableFuture.completedFuture(this.parent);
     }
 

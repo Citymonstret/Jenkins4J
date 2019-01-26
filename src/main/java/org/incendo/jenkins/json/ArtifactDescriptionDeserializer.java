@@ -26,7 +26,6 @@ package org.incendo.jenkins.json;
 
 import com.google.gson.*;
 import org.incendo.jenkins.objects.ArtifactDescription;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Type;
@@ -37,8 +36,7 @@ import java.lang.reflect.Type;
  */
 final class ArtifactDescriptionDeserializer implements JsonDeserializer<ArtifactDescription> {
 
-    @NotNull @Contract(pure = true) @Override
-    public ArtifactDescription deserialize(final JsonElement json, final Type typeOfT,
+    @NotNull @Override public ArtifactDescription deserialize(final JsonElement json, final Type typeOfT,
         final JsonDeserializationContext context) throws JsonParseException {
         final JsonObject jsonObject = json.getAsJsonObject();
         final String displayPath;

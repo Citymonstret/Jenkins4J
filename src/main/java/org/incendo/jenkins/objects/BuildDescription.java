@@ -25,7 +25,6 @@
 package org.incendo.jenkins.objects;
 
 import com.google.common.base.Preconditions;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -67,7 +66,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the jenkins class
      */
-    @Contract(pure = true) public String getJenkinsClass() {
+    public String getJenkinsClass() {
         return this.jenkinsClass;
     }
 
@@ -76,7 +75,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return Build number
      */
-    @Contract(pure = true) public int getNumber() {
+    public int getNumber() {
         return this.number;
     }
 
@@ -85,12 +84,11 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return build url
      */
-    @Override @Contract(pure = true) public String getUrl() {
+    @Override public String getUrl() {
         return this.url;
     }
 
-    @Contract(value = "null -> false", pure = true) @Override
-    public boolean equals(final Object o) {
+    @Override public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
@@ -106,12 +104,12 @@ import java.util.concurrent.CompletableFuture;
         return Objects.hash(jenkinsClass, number, url);
     }
 
-    @NotNull @Contract(pure = true) @Override public String toString() {
+    @NotNull @Override public String toString() {
         return "BuildDescription{" + "jenkinsClass='" + jenkinsClass + '\'' + ", number=" + number
             + ", url='" + url + '\'' + '}';
     }
 
-    @NotNull @Contract(pure = true) @Override public CompletableFuture<JobInfo> getParent() {
+    @NotNull @Override public CompletableFuture<JobInfo> getParent() {
         return CompletableFuture.completedFuture(this.parent);
     }
 

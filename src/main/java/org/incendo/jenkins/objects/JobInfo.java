@@ -26,7 +26,6 @@ package org.incendo.jenkins.objects;
 
 import com.google.common.base.Preconditions;
 import org.incendo.jenkins.Jenkins;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -100,7 +99,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the name
      */
-    @Contract(pure = true) public String getName() {
+    public String getName() {
         return name;
     }
 
@@ -109,7 +108,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the full name
      */
-    @Contract(pure = true) public String getFullName() {
+    public String getFullName() {
         return fullName;
     }
 
@@ -118,7 +117,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the display name
      */
-    @Contract(pure = true) public String getDisplayName() {
+    public String getDisplayName() {
         return displayName;
     }
 
@@ -127,7 +126,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the full display name
      */
-    @Contract(pure = true) public String getFullDisplayName() {
+    public String getFullDisplayName() {
         return fullDisplayName;
     }
 
@@ -136,7 +135,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the description
      */
-    @Contract(pure = true) public String getDescription() {
+    public String getDescription() {
         return description;
     }
 
@@ -145,7 +144,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return job url
      */
-    @Override @Contract(pure = true) public String getUrl() {
+    @Override public String getUrl() {
         return url;
     }
 
@@ -154,7 +153,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the builds
      */
-    @Contract(pure = true) public Collection<BuildDescription> getBuilds() {
+    public Collection<BuildDescription> getBuilds() {
         return builds;
     }
 
@@ -163,7 +162,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the last build
      */
-    @Contract(pure = true) public BuildDescription getLastBuild() {
+    public BuildDescription getLastBuild() {
         return lastBuild;
     }
 
@@ -172,7 +171,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the last completed build
      */
-    @Contract(pure = true) public BuildDescription getLastCompletedBuild() {
+    public BuildDescription getLastCompletedBuild() {
         return lastCompletedBuild;
     }
 
@@ -181,7 +180,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the last failed build
      */
-    @Contract(pure = true) public BuildDescription getLastFailedBuild() {
+    public BuildDescription getLastFailedBuild() {
         return lastFailedBuild;
     }
 
@@ -190,7 +189,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the last successful build
      */
-    @Contract(pure = true) public BuildDescription getLastSuccessfulBuild() {
+    public BuildDescription getLastSuccessfulBuild() {
         return lastSuccessfulBuild;
     }
 
@@ -199,11 +198,11 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the next build number
      */
-    @Contract(pure = true) public int getNextBuildNumber() {
+    public int getNextBuildNumber() {
         return nextBuildNumber;
     }
 
-    @NotNull @Contract(pure = true) @Override public String toString() {
+    @NotNull @Override public String toString() {
         return "JobInfo{" + "name='" + name + '\'' + ", fullName='" + fullName + '\''
             + ", displayName='" + displayName + '\'' + ", fullDisplayName='" + fullDisplayName
             + '\'' + ", description='" + description + '\'' + ", url='" + url + '\'' + ", builds="
@@ -212,7 +211,7 @@ import java.util.concurrent.CompletableFuture;
             + lastSuccessfulBuild + ", nextBuildNumber=" + nextBuildNumber + '}';
     }
 
-    @Contract(pure = true) @Override public Jenkins getJenkins() {
+    @Override public Jenkins getJenkins() {
         return this.jenkins;
     }
 

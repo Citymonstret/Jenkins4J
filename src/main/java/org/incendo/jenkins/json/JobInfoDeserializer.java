@@ -29,7 +29,6 @@ import com.google.gson.*;
 import org.incendo.jenkins.exception.JenkinsNodeReadException;
 import org.incendo.jenkins.objects.BuildDescription;
 import org.incendo.jenkins.objects.JobInfo;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Type;
@@ -54,8 +53,7 @@ final class JobInfoDeserializer implements JsonDeserializer<JobInfo> {
         this.jsonJenkinsReader = jsonJenkinsReader;
     }
 
-    @NotNull @Contract("_, _, _ -> new") @Override
-    public JobInfo deserialize(@NotNull final JsonElement json, final Type typeOfT,
+    @NotNull @Override public JobInfo deserialize(@NotNull final JsonElement json, final Type typeOfT,
         final JsonDeserializationContext context) throws JsonParseException {
         final JsonObject jsonObject = json.getAsJsonObject();
         final String name = jsonObject.get("name").getAsString();

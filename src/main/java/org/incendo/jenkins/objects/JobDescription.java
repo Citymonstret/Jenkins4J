@@ -25,7 +25,6 @@
 package org.incendo.jenkins.objects;
 
 import com.google.common.base.Preconditions;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -70,7 +69,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the jenkins class
      */
-    @Contract(pure = true) public String getJenkinsClass() {
+    public String getJenkinsClass() {
         return this.jenkinsClass;
     }
 
@@ -79,7 +78,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the name
      */
-    @Contract(pure = true) public String getName() {
+    public String getName() {
         return this.name;
     }
 
@@ -88,7 +87,7 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return job url
      */
-    @Override @Contract(pure = true) public String getUrl() {
+    @Override public String getUrl() {
         return this.url;
     }
 
@@ -97,12 +96,11 @@ import java.util.concurrent.CompletableFuture;
      *
      * @return the color
      */
-    @Contract(pure = true) public String getColor() {
+    public String getColor() {
         return this.color;
     }
 
-    @Contract(value = "null -> false", pure = true) @Override
-    public boolean equals(final Object o) {
+    @Override public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
@@ -118,12 +116,12 @@ import java.util.concurrent.CompletableFuture;
         return Objects.hash(jenkinsClass, name, url, color);
     }
 
-    @NotNull @Contract(pure = true) @Override public String toString() {
+    @NotNull @Override public String toString() {
         return "JobDescription{" + "jenkinsClass='" + jenkinsClass + '\'' + ", name='" + name + '\''
             + ", url='" + url + '\'' + ", color='" + color + '\'' + '}';
     }
 
-    @NotNull @Contract(pure = true) @Override public CompletableFuture<MasterNode> getParent() {
+    @NotNull @Override public CompletableFuture<MasterNode> getParent() {
         return CompletableFuture.completedFuture(this.parent);
     }
 

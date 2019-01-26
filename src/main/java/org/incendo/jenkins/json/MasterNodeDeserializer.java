@@ -28,7 +28,6 @@ import com.google.common.base.Preconditions;
 import com.google.gson.*;
 import org.incendo.jenkins.objects.JobDescription;
 import org.incendo.jenkins.objects.MasterNode;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Type;
@@ -53,8 +52,7 @@ final class MasterNodeDeserializer implements JsonDeserializer<MasterNode> {
         this.jsonJenkinsReader = jsonJenkinsReader;
     }
 
-    @NotNull @Contract("_, _, _ -> new") @Override
-    public MasterNode deserialize(@NotNull final JsonElement json, final Type typeOfT,
+    @NotNull @Override public MasterNode deserialize(@NotNull final JsonElement json, final Type typeOfT,
         final JsonDeserializationContext context) throws JsonParseException {
         final JsonObject jsonObject = json.getAsJsonObject();
         final JsonArray jobsArray = jsonObject.get("jobs").getAsJsonArray();
