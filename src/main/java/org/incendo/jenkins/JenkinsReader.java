@@ -81,12 +81,13 @@ public abstract class JenkinsReader {
     final MasterNode readMasterView() throws JenkinsNodeReadException {
         final String content;
         try {
-            final ResponseBody body =
-                this.jenkinsService.getMasterNode(this.getAPITypeString()).execute().body();
-            if (body == null) {
-                throw new NullPointerException("Response body is null");
+            try (final ResponseBody body =
+                this.jenkinsService.getMasterNode(this.getAPITypeString()).execute().body()) {
+                if (body == null) {
+                    throw new NullPointerException("Response body is null");
+                }
+                content = body.string();
             }
-            content = body.string();
         } catch (final Exception exception) {
             throw new JenkinsNodeReadException("master node", exception);
         }
@@ -113,11 +114,12 @@ public abstract class JenkinsReader {
             } else if (response.code() == 403) {
                 throw new JenkinsNotAuthenticatedException(String.format("job/%s/", jobName));
             }
-            final ResponseBody body = response.body();
-            if (body == null) {
-                throw new NullPointerException("Response body is null");
+            try (final ResponseBody body = response.body()) {
+                if (body == null) {
+                    throw new NullPointerException("Response body is null");
+                }
+                content = body.string();
             }
-            content = body.string();
         } catch (final Exception exception) {
             throw new JenkinsNodeReadException(String.format("job node: %s", jobName), exception);
         }
@@ -146,11 +148,12 @@ public abstract class JenkinsReader {
             } else if (response.code() == 403) {
                 throw new JenkinsNotAuthenticatedException(String.format("job/%s/%d/", jobName, build));
             }
-            final ResponseBody body = response.body();
-            if (body == null) {
-                throw new NullPointerException("Response body is null");
+            try (final ResponseBody body = response.body()) {
+                if (body == null) {
+                    throw new NullPointerException("Response body is null");
+                }
+                content = body.string();
             }
-            content = body.string();
         } catch (final Exception exception) {
             throw new JenkinsNodeReadException(String.format("job node: %s", jobName), exception);
         }
